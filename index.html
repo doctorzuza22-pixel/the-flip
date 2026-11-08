@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>THE FLIP — Turn Any Voucher Into Money</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ========== ONBOARD ========== -->
+<div id="screen-onboard" class="screen active">
+  <div class="onboard-top">
+    <div class="logo">THE <span>FLIP</span></div>
+    <div class="demo-badge">DEMO MODE — No FICA</div>
+  </div>
+  <div class="onboard-hero">
+    <div class="flip-card-demo">
+      <div class="mini-voucher">Cash Send Voucher<br><b>R200.00</b><br><small>PIN •••• 4821</small></div>
+      <div class="flip-arrow">↓ FLIPPED ↓</div>
+      <div class="mini-wallet">FLIP Wallet<br><b>R200.00</b><br><small>✓ Flipped successfully</small></div>
+    </div>
+    <h1>Turn any voucher<br>into <span>money.</span></h1>
+    <p>Load a voucher. Flip it to data, any bank, or cash. No bank account needed.</p>
+  </div>
+  <button class="btn-primary" onclick="showScreen('home')">Get Started →</button>
+  <button class="btn-ghost" onclick="showScreen('admin')">Admin 🔒</button>
+  <p class="small">Independent Wallet • Powered by Partner Rails • FICA via Partner</p>
+</div>
+
+<!-- ========== HOME / WALLET ========== -->
+<div id="screen-home" class="screen">
+  <header class="topbar">
+    <div><b>THE FLIP</b> <span class="wallet-tag">WALLET</span></div>
+    <div class="top-icons"><span onclick="showScreen('fica')">👤</span> <span onclick="showScreen('admin')">🔒</span></div>
+  </header>
+
+  <div class="balance-card">
+    <div class="bal-label">Available Balance <span id="fica-badge" class="fica-badge">FICA Tier 0 • Demo</span></div>
+    <div class="bal-amount">R<span id="balance">0.00</span></div>
+    <div class="bal-sub">Acct •••• 4271 • <span id="tier-limit">Limit R0 • Verify to unlock</span></div>
+    <div class="bal-actions">
+      <button class="btn-white" onclick="showScreen('load')">+ Load Voucher</button>
+      <button class="btn-outline" onclick="showScreen('cards')">💳 My Card</button>
+    </div>
+  </div>
+
+  <div class="section-title">Quick Actions</div>
+  <div class="grid-4">
+    <button onclick="flipTo('data')">📱<br>Buy Data</button>
+    <button onclick="flipTo('bank')">🏦<br>Send to Bank</button>
+    <button onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button onclick="flipTo('cashout')">💵<br>Cash Out</button>
+  </div>
+
+  <div class="fraud-card">🛡️ <b>Fraud Guard active</b><br><small>Every voucher is checked. PIN never stored.</small></div>
+
+  <div class="refer-card">🎁 <b>Refer a friend, get R10</b><br><small>When they flip their first voucher.</small> <button class="btn-small" onclick="alert('Refer link copied!')">Invite</button></div>
+
+  <div class="section-title">Recent Activity</div>
+  <div id="activity" class="activity"><p class="empty">No flips yet. Load your first voucher.</p></div>
+
+  <nav class="bottom-nav">
+    <button class="active" onclick="showScreen('home')">🏠<br>Home</button>
+    <button onclick="showScreen('load')">➕<br>Load</button>
+    <button onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button onclick="showScreen('cards')">💳<br>Cards</button>
+    <button onclick="showScreen('fica')">✅<br>Verify</button>
+  </nav>
+</div>
+
+<!-- ========== LOAD VOUCHER ========== -->
+<div id="screen-load" class="screen">
+  <header class="topbar"><button onclick="showScreen('home')">←</button><b>Load Voucher</b><span></span></header>
+  <div class="tabs"><button id="tab-e" class="tab active" onclick="setTab('e')">eVoucher</button><button id="tab-a" class="tab" onclick="setTab('a')">Airtime Voucher</button></div>
+  <div class="form-card">
+    <label>Voucher PIN (10 digits)</label>
+    <div class="pin-row" id="pin-row"></div>
+    <input type="tel" id="pin-input" maxlength="10" placeholder="Enter 10-digit PIN" inputmode="numeric">
+    <label>Reference (10 digits)</label>
+    <input type="tel" id="ref-input" maxlength="10" placeholder="Enter 10-digit Reference" inputmode="numeric">
+    <label>Amount</label>
+    <input type="number" id="amount-input" placeholder="e.g. 200" inputmode="decimal">
+    <label>Issuer (for demo, pick any)</label>
+    <div class="bank-row">
+      <button class="bank-btn" onclick="selectBank(this)">FNB</button>
+      <button class="bank-btn" onclick="selectBank(this)">ABSA</button>
+      <button class="bank-btn" onclick="selectBank(this)">Nedbank</button>
+      <button class="bank-btn" onclick="selectBank(this)">Standard Bank</button>
+      <button class="bank-btn" onclick="selectBank(this)">Capitec</button>
+    </div>
+    <button class="btn-primary" onclick="flipNow()">Flip Now →</button>
+    <p class="small">Demo Mode: Any 10-digit PIN works. Real mode: Partner verifies voucher via API.</p>
+  </div>
+  <nav class="bottom-nav">
+    <button onclick="showScreen('home')">🏠<br>Home</button>
+    <button class="active" onclick="showScreen('load')">➕<br>Load</button>
+    <button onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button onclick="showScreen('cards')">💳<br>Cards</button>
+    <button onclick="showScreen('fica')">✅<br>Verify</button>
+  </nav>
+</div>
+
+<!-- ========== FLIP / CHOOSE DESTINATION ========== -->
+<div id="screen-flip" class="screen">
+  <header class="topbar"><button onclick="showScreen('home')">←</button><b>Flip</b><span></span></header>
+  <div class="flip-head">What do you want to Flip to?<br><small>Balance: <b>R<span class="bal-mirror">0.00</span></b></small></div>
+  <div class="flip-option" onclick="flipTo('data')">
+    <div>📱 <b>Buy Data & Airtime</b><br><small>Instant • 2% fee</small></div><span>→</span>
+  </div>
+  <div class="flip-option" onclick="flipTo('bank')">
+    <div>🏦 <b>Send to Any Bank</b><br><small>FNB • ABSA • Nedbank • Standard • Capitec • R2.50 flat</small></div><span>→</span>
+  </div>
+  <div class="flip-option" onclick="flipTo('cashout')">
+    <div>💵 <b>Shoprite Cash Out QR</b><br><small>FREE under R500</small></div><span>→</span>
+  </div>
+  <div class="flip-option" onclick="showScreen('cards')">
+    <div>💳 <b>Move to FLIP Card</b><br><small>Instant • FREE • Spend anywhere Mastercard accepted</small></div><span>→</span>
+  </div>
+  <nav class="bottom-nav">
+    <button onclick="showScreen('home')">🏠<br>Home</button>
+    <button onclick="showScreen('load')">➕<br>Load</button>
+    <button class="active" onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button onclick="showScreen('cards')">💳<br>Cards</button>
+    <button onclick="showScreen('fica')">✅<br>Verify</button>
+  </nav>
+</div>
+
+<!-- ========== CARDS ========== -->
+<div id="screen-cards" class="screen">
+  <header class="topbar"><button onclick="showScreen('home')">←</button><b>Your Virtual Cards</b><span></span></header>
+  <div class="vcard">
+    <div class="vcard-top"><span>THE FLIP</span><span>Mastercard</span></div>
+    <div class="vcard-num" id="card-num">•••• •••• •••• 4271</div>
+    <div class="vcard-bottom"><span>FLIP WALLET</span><span>12/29</span></div>
+    <div class="vcard-bal">Card Balance: R<span class="bal-mirror">0.00</span></div>
+  </div>
+  <div class="grid-3">
+    <button onclick="toggleCard()">❄️ Freeze</button>
+    <button onclick="alert('Card number: 5355 1234 5678 4271\nCVV: 123 — Demo only')">👁️ Show Details</button>
+    <button onclick="alert('Limit set to R3,000 / day')">⚙️ Limits</button>
+  </div>
+  <p class="small">Virtual card issued via Bank Zero + Paymentology partner. Physical card available at Tier 2 FICA.</p>
+  <nav class="bottom-nav">
+    <button onclick="showScreen('home')">🏠<br>Home</button>
+    <button onclick="showScreen('load')">➕<br>Load</button>
+    <button onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button class="active" onclick="showScreen('cards')">💳<br>Cards</button>
+    <button onclick="showScreen('fica')">✅<br>Verify</button>
+  </nav>
+</div>
+
+<!-- ========== FICA / VERIFY ========== -->
+<div id="screen-fica" class="screen">
+  <header class="topbar"><button onclick="showScreen('home')">←</button><b>Verify — FICA</b><span></span></header>
+  <div class="fica-card">
+    <h3>Your FICA Status</h3>
+    <p>Current: <b id="fica-status">Tier 0 — Demo</b></p>
+    <div class="tier"><b>Tier 1 — R3,000 limit</b><br><small>SA ID Number + Phone</small><br><input id="id-input" placeholder="SA ID Number (13 digits)" maxlength="13" inputmode="numeric"><button class="btn-primary" onclick="verifyTier1()">Verify Tier 1</button></div>
+    <div class="tier"><b>Tier 2 — R25,000 limit + Physical Card</b><br><small>Selfie + Proof of Address — via Partner</small><br><button class="btn-outline" onclick="verifyTier2()">Start Tier 2 Verification</button></div>
+    <p class="small">In live mode, verification is done by our licensed partner (Spendl / Bank Zero). We never store your ID documents.</p>
+  </div>
+  <nav class="bottom-nav">
+    <button onclick="showScreen('home')">🏠<br>Home</button>
+    <button onclick="showScreen('load')">➕<br>Load</button>
+    <button onclick="showScreen('flip')">🔄<br>Flip</button>
+    <button onclick="showScreen('cards')">💳<br>Cards</button>
+    <button class="active" onclick="showScreen('fica')">✅<br>Verify</button>
+  </nav>
+</div>
+
+<!-- ========== ADMIN ========== -->
+<div id="screen-admin" class="screen">
+  <header class="topbar"><button onclick="showScreen('home')">←</button><b>Admin 🔒</b><span></span></header>
+  <div class="admin-hero"><small>New Deposits Today</small><h2>R<span id="admin-deposits">2,147,830</span></h2><small>from <span id="admin-flips">12,430</span> flips</small></div>
+  <div class="grid-2">
+    <div class="stat"><b id="admin-installs">8,200</b><br><small>New Installs</small></div>
+    <div class="stat"><b>R387</b><br><small>Avg Deposit</small></div>
+    <div class="stat"><b>R61k/mo</b><br><small>Projected Revenue</small></div>
+    <div class="stat"><b id="admin-your-flips">0</b><br><small>Your Flips (Demo)</small></div>
+  </div>
+  <div class="section-title">Source Breakdown</div>
+  <div class="bar-row"><span>FNB</span><div class="bar"><i style="width:42%"></i></div><span>42%</span></div>
+  <div class="bar-row"><span>ABSA</span><div class="bar"><i style="width:28%"></i></div><span>28%</span></div>
+  <div class="bar-row"><span>Nedbank</span><div class="bar"><i style="width:18%"></i></div><span>18%</span></div>
+  <div class="bar-row"><span>Std Bank</span><div class="bar"><i style="width:12%"></i></div><span>12%</span></div>
+  <p class="small">Demo numbers for partner pitch. Live numbers come from Partner API (Spendl Aegis feed).</p>
+  <button class="btn-primary" onclick="showScreen('home')">Back to Wallet</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
