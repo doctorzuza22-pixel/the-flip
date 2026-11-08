@@ -1,0 +1,53 @@
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#0a0a0a;color:#fff;max-width:480px;margin:0 auto;min-height:100vh}
+.screen{display:none;padding:16px;padding-bottom:90px}
+.screen.active{display:block}
+.logo{font-size:28px;font-weight:900}.logo span{color:#00ff88}
+.demo-badge{background:#222;color:#00ff88;padding:6px 10px;border-radius:20px;font-size:12px;display:inline-block;margin:10px 0}
+.onboard-hero{text-align:center;padding:20px 0}
+.flip-card-demo{background:#111;border:1px solid #222;border-radius:16px;padding:16px;margin:16px 0}
+.mini-voucher{background:#1a1a1a;padding:12px;border-radius:10px}
+.flip-arrow{margin:10px 0;color:#00ff88;font-weight:900}
+.mini-wallet{background:#00ff88;color:#000;padding:12px;border-radius:10px}
+h1{font-size:32px;line-height:1.1;margin:16px 0}.logo span,h1 span{color:#00ff88}
+p{color:#aaa;line-height:1.5}
+.btn-primary{background:#00ff88;color:#000;border:none;width:100%;padding:16px;border-radius:12px;font-weight:900;font-size:16px;margin:12px 0}
+.btn-ghost{background:transparent;color:#fff;border:1px solid #333;width:100%;padding:14px;border-radius:12px;margin:6px 0}
+.btn-white{background:#fff;color:#000;border:none;padding:12px 16px;border-radius:10px;font-weight:700}
+.btn-outline{background:transparent;color:#fff;border:1px solid #fff;padding:12px 16px;border-radius:10px}
+.small{font-size:12px;color:#888;text-align:center;margin-top:10px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.wallet-tag{background:#00ff88;color:#000;padding:2px 8px;border-radius:20px;font-size:11px}
+.top-icons span{font-size:22px;margin-left:12px}
+.balance-card{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000;border-radius:20px;padding:20px}
+.bal-label{font-size:13px;display:flex;justify-content:space-between}
+.fica-badge{background:#000;color:#00ff88;padding:3px 8px;border-radius:20px;font-size:11px}
+.bal-amount{font-size:42px;font-weight:900;margin:8px 0}
+.bal-sub{font-size:13px;opacity:.8}
+.bal-actions{display:flex;gap:10px;margin-top:16px}
+.bal-actions button{flex:1}
+.section-title{font-weight:900;margin:20px 0 10px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.grid-4 button,.grid-3 button{background:#1a1a1a;color:#fff;border:1px solid #222;padding:14px 6px;border-radius:12px;font-size:13px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.fraud-card,.refer-card{background:#1a1a1a;border:1px solid #222;border-radius:14px;padding:14px;margin:14px 0}
+.btn-small{background:#00ff88;border:none;padding:6px 12px;border-radius:20px;font-weight:700;margin-left:8px}
+.activity{background:#111;border-radius:12px;padding:14px}.empty{color:#777;text-align:center}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#111;border-top:1px solid #222;display:flex;justify-content:space-around;padding:10px 0;z-index:99}
+.bottom-nav button{background:none;border:none;color:#888;font-size:12px}.bottom-nav button.active{color:#00ff88}
+.tabs{display:flex;gap:8px;margin:14px 0}.tab{flex:1;padding:12px;border-radius:10px;background:#1a1a1a;color:#fff;border:1px solid #222}.tab.active{background:#00ff88;color:#000}
+.form-card{background:#111;border-radius:16px;padding:16px}
+.form-card label{display:block;margin:14px 0 6px;font-size:13px;color:#aaa}
+.form-card input{width:100%;padding:14px;background:#000;border:1px solid #333;color:#fff;border-radius:10px;font-size:16px}
+.bank-row{display:flex;gap:6px;flex-wrap:wrap}.bank-btn{padding:10px 14px;background:#1a1a1a;color:#fff;border:1px solid #333;border-radius:20px}.bank-btn.active{background:#00ff88;color:#000}
+.flip-head{text-align:center;padding:20px 0;font-size:18px;font-weight:700}
+.flip-option{background:#111;border:1px solid #222;border-radius:14px;padding:16px;margin:10px 0;display:flex;justify-content:space-between;align-items:center}
+.vcard{background:linear-gradient(135deg,#111,#222);border:1px solid #00ff88;border-radius:20px;padding:20px}
+.vcard-top{display:flex;justify-content:space-between}.vcard-num{font-size:22px;letter-spacing:2px;margin:20px 0}.vcard-bottom{display:flex;justify-content:space-between;color:#aaa}.vcard-bal{margin-top:14px;color:#00ff88}
+.fica-card,.admin-hero{background:#111;border-radius:16px;padding:16px}
+.tier{background:#1a1a1a;border:1px solid #222;border-radius:12px;padding:14px;margin:14px 0}
+.tier input{width:100%;padding:12px;margin:10px 0;background:#000;border:1px solid #333;color:#fff;border-radius:10px}
+.admin-hero{text-align:center;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#000}.admin-hero h2{font-size:36px}
+.stat{background:#111;border-radius:12px;padding:14px;text-align:center}
+.bar-row{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}.bar{flex:1;background:#222;height:10px;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:#00ff88}
