@@ -12,7 +12,7 @@
 <div id="screen-onboard" class="screen active">
   <div class="onboard-top">
     <img class="brand-logo" src="the-flip-logo.svg" alt="THE FLIP">
-    <div class="demo-badge">DEMO MODE — No FICA</div>
+    <div class="demo-badge">DEMO MODE — NO REAL MONEY</div>
   </div>
   <div class="onboard-hero">
     <div class="flip-card-demo">
@@ -25,7 +25,7 @@
   </div>
   <button class="btn-primary" onclick="showScreen('home')">Get Started →</button>
   <button class="btn-ghost" onclick="showScreen('admin')">Admin 🔒</button>
-  <p class="small">Independent Wallet • Powered by Partner Rails • FICA via Partner</p>
+  <p class="small">Prototype only • No financial partner connected</p>
 </div>
 
 <!-- ========== HOME / WALLET ========== -->
@@ -53,11 +53,11 @@
     <button onclick="flipTo('cashout')">💵<br>Cash Out</button>
   </div>
 
-  <div class="fraud-card">🛡️ <b>Fraud Guard active</b><br><small>Every voucher is checked. PIN never stored.</small></div>
+  <div class="fraud-card">🛡️ <b>Fraud Guard active</b><br><small>Voucher checks are simulated. Never enter a real PIN.</small></div>
 
-  <div class="refer-card">🎁 <b>Refer a friend, get R10</b><br><small>When they flip their first voucher.</small> <button class="btn-small" onclick="alert('Refer link copied!')">Invite</button></div>
+  <div class="refer-card">🎁 <b>Referral feature preview</b><br><small>Referral rewards are not active in this demo.</small> <button class="btn-small" onclick="alert('Demo only: referral links are not active yet.')">Invite</button></div>
 
-  <div class="section-title">Recent Activity</div>
+  <div class="section-title">Recent Activity • Demo</div>
   <div id="activity" class="activity"><p class="empty">No flips yet. Load your first voucher.</p></div>
 
   <nav class="bottom-nav">
@@ -81,7 +81,7 @@
     <input type="tel" id="ref-input" maxlength="10" placeholder="Enter 10-digit Reference" inputmode="numeric">
     <label>Amount</label>
     <input type="number" id="amount-input" placeholder="e.g. 200" inputmode="decimal">
-    <label>Issuer (for demo, pick any)</label>
+    <label>Test issuer (demo only)</label>
     <div class="bank-row">
       <button class="bank-btn" onclick="selectBank(this)">FNB</button>
       <button class="bank-btn" onclick="selectBank(this)">ABSA</button>
@@ -90,7 +90,7 @@
       <button class="bank-btn" onclick="selectBank(this)">Capitec</button>
     </div>
     <button class="btn-primary" onclick="flipNow()">Flip Now →</button>
-    <p class="small">Demo Mode: Any 10-digit PIN works. Real mode: Partner verifies voucher via API.</p>
+    <p class="small">DEMO ONLY: Use made-up test digits. No voucher is checked and no funds are received.</p>
   </div>
   <nav class="bottom-nav">
     <button onclick="showScreen('home')">🏠<br>Home</button>
@@ -115,7 +115,7 @@
     <div>💵 <b>Shoprite Cash Out QR</b><br><small>FREE under R500</small></div><span>→</span>
   </div>
   <div class="flip-option" onclick="showScreen('cards')">
-    <div>💳 <b>Move to FLIP Card</b><br><small>Instant • FREE • Spend anywhere Mastercard accepted</small></div><span>→</span>
+    <div>💳 <b>Move to FLIP Card</b><br><small>Instant • FREE • Spend anywhere DEMO CARD accepted</small></div><span>→</span>
   </div>
   <nav class="bottom-nav">
     <button onclick="showScreen('home')">🏠<br>Home</button>
@@ -140,7 +140,7 @@
     <button onclick="alert('Card number: 5355 1234 5678 4271\nCVV: 123 — Demo only')">👁️ Show Details</button>
     <button onclick="alert('Limit set to R3,000 / day')">⚙️ Limits</button>
   </div>
-  <p class="small">Virtual card issued via Bank Zero + Paymentology partner. Physical card available at Tier 2 FICA.</p>
+  <p class="small">Illustrative card screen only. No card issuer or banking partner is connected.</p>
   <nav class="bottom-nav">
     <button onclick="showScreen('home')">🏠<br>Home</button>
     <button onclick="showScreen('load')">➕<br>Load</button>
@@ -156,9 +156,9 @@
   <div class="fica-card">
     <h3>Your FICA Status</h3>
     <p>Current: <b id="fica-status">Tier 0 — Demo</b></p>
-    <div class="tier"><b>Tier 1 — R3,000 limit</b><br><small>SA ID Number + Phone</small><br><input id="id-input" placeholder="SA ID Number (13 digits)" maxlength="13" inputmode="numeric"><button class="btn-primary" onclick="verifyTier1()">Verify Tier 1</button></div>
+    <div class="tier"><b>Tier 1 — R3,000 limit</b><br><small>SA ID Number + Phone</small><br><input id="id-input" placeholder="13-digit TEST number only — never enter your real ID" maxlength="13" inputmode="numeric"><button class="btn-primary" onclick="verifyTier1()">Verify Tier 1</button></div>
     <div class="tier"><b>Tier 2 — R25,000 limit + Physical Card</b><br><small>Selfie + Proof of Address — via Partner</small><br><button class="btn-outline" onclick="verifyTier2()">Start Tier 2 Verification</button></div>
-    <p class="small">In live mode, verification is done by our licensed partner (Spendl / Bank Zero). We never store your ID documents.</p>
+    <p class="small">Demo screens only. No FICA provider is connected. Never enter real personal information.</p>
   </div>
   <nav class="bottom-nav">
     <button onclick="showScreen('home')">🏠<br>Home</button>
@@ -172,11 +172,11 @@
 <!-- ========== ADMIN ========== -->
 <div id="screen-admin" class="screen">
   <header class="topbar"><button onclick="showScreen('home')">←</button><b>Admin 🔒</b><span></span></header>
-  <div class="admin-hero"><small>New Deposits Today</small><h2>R<span id="admin-deposits">2,147,830</span></h2><small>from <span id="admin-flips">12,430</span> flips</small></div>
+  <div class="admin-hero"><small>Illustrative Demo Deposits</small><h2>R<span id="admin-deposits">2,147,830</span></h2><small>from <span id="admin-flips">12,430</span> flips</small></div>
   <div class="grid-2">
-    <div class="stat"><b id="admin-installs">8,200</b><br><small>New Installs</small></div>
+    <div class="stat"><b id="admin-installs">8,200</b><br><small>Illustrative Installs</small></div>
     <div class="stat"><b>R387</b><br><small>Avg Deposit</small></div>
-    <div class="stat"><b>R61k/mo</b><br><small>Projected Revenue</small></div>
+    <div class="stat"><b>R61k/mo</b><br><small>Illustrative Revenue</small></div>
     <div class="stat"><b id="admin-your-flips">0</b><br><small>Your Flips (Demo)</small></div>
   </div>
   <div class="section-title">Source Breakdown</div>
@@ -184,7 +184,7 @@
   <div class="bar-row"><span>ABSA</span><div class="bar"><i style="width:28%"></i></div><span>28%</span></div>
   <div class="bar-row"><span>Nedbank</span><div class="bar"><i style="width:18%"></i></div><span>18%</span></div>
   <div class="bar-row"><span>Std Bank</span><div class="bar"><i style="width:12%"></i></div><span>12%</span></div>
-  <p class="small">Demo numbers for partner pitch. Live numbers come from Partner API (Spendl Aegis feed).</p>
+  <p class="small">All figures are fictional sample data for interface demonstration. No partner API is connected.</p>
   <button class="btn-primary" onclick="showScreen('home')">Back to Wallet</button>
 </div>
 
