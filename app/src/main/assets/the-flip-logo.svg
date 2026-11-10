@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="132" viewBox="0 0 520 132" role="img" aria-labelledby="title desc">
+  <title id="title">THE FLIP</title>
+  <desc id="desc">A clean two-way flip arrow symbol beside the THE FLIP wordmark.</desc>
+  <g transform="translate(8 14)">
+    <rect x="0" y="0" width="104" height="104" rx="24" fill="#101010" stroke="#262626" stroke-width="2"/>
+    <path d="M25 39h49l-10-10 9-9 26 26-26 26-9-9 10-10H25z" fill="#00E676"/>
+    <path d="M79 65H30l10 10-9 9L5 58l26-26 9 9-10 10h49z" fill="#FFFFFF"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800">
+    <text x="134" y="65" font-size="24" letter-spacing="5" fill="#FFFFFF">THE</text>
+    <text x="132" y="112" font-size="52" letter-spacing="1" fill="#FFFFFF">FL<tspan fill="#00E676">I</tspan>P</text>
+  </g>
+</svg>
