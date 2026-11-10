@@ -2,7 +2,7 @@
 body{background:#0a0a0a;color:#fff;max-width:480px;margin:0 auto;min-height:100vh}
 .screen{display:none;padding:16px;padding-bottom:90px}
 .screen.active{display:block}
-.logo{font-size:28px;font-weight:900}.logo span{color:#00ff88}
+.brand-logo{display:block;width:190px;max-width:70vw;height:auto;object-fit:contain}
 .demo-badge{background:#222;color:#00ff88;padding:6px 10px;border-radius:20px;font-size:12px;display:inline-block;margin:10px 0}
 .onboard-hero{text-align:center;padding:20px 0}
 .flip-card-demo{background:#111;border:1px solid #222;border-radius:16px;padding:16px;margin:16px 0}
