@@ -1,59 +1,20 @@
-let balance = parseFloat(localStorage.getItem('flip_balance')||'0');
-let tier = parseInt(localStorage.getItem('flip_tier')||'0');
-let selectedBank = 'FNB';
-
-function showScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
-  updateUI();
-  window.scrollTo(0,0);
-}
-function updateUI(){
-  document.getElementById('balance').textContent = balance.toFixed(2);
-  document.querySelectorAll('.bal-mirror').forEach(e=>e.textContent = balance.toFixed(2));
-  document.getElementById('fica-badge').textContent = tier===0 ? 'FICA Tier 0 • Demo' : tier===1 ? 'FICA Tier 1 • Verified' : 'FICA Tier 2 • Verified';
-  document.getElementById('fica-status').textContent = tier===0 ? 'Tier 0 — Demo' : 'Tier '+tier+' — Verified';
-  document.getElementById('tier-limit').textContent = tier===0 ? 'Limit R0 • Verify to unlock' : tier===1 ? 'Limit R3,000' : 'Limit R25,000';
-  document.getElementById('admin-your-flips').textContent = localStorage.getItem('flip_count')||'0';
-}
-function setTab(t){
-  document.getElementById('tab-e').classList.toggle('active',t==='e');
-  document.getElementById('tab-a').classList.toggle('active',t==='a');
-}
-function selectBank(btn){
-  document.querySelectorAll('.bank-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); selectedBank=btn.textContent;
-}
-function flipNow(){
-  let pin=document.getElementById('pin-input').value;
-  let ref=document.getElementById('ref-input').value;
-  let amt=parseFloat(document.getElementById('amount-input').value);
-  if(pin.length<10||ref.length<10){alert('PIN and Reference must be 10 digits');return;}
-  if(!amt||amt<=0){alert('Enter amount');return;}
-  balance+=amt;
-  let c=parseInt(localStorage.getItem('flip_count')||'0')+1;
-  localStorage.setItem('flip_count',c);
-  localStorage.setItem('flip_balance',balance);
-  let act=document.getElementById('activity');
-  if(act.querySelector('.empty')) act.innerHTML='';
-  act.innerHTML=`<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #222"><span>✅ Flipped ${selectedBank} Voucher</span><b>+R${amt.toFixed(2)}</b></div>`+act.innerHTML;
-  document.getElementById('pin-input').value='';document.getElementById('ref-input').value='';document.getElementById('amount-input').value='';
-  updateUI(); showScreen('home'); alert(`Success! R${amt.toFixed(2)} added to your FLIP Wallet`);
-}
-function flipTo(type){
-  if(balance<=0){alert('Load a voucher first');showScreen('load');return;}
-  if(type==='data'){let fee=balance*0.02;let net=balance-fee;balance=0;localStorage.setItem('flip_balance',balance);updateUI();alert(`Data bought! Fee R${fee.toFixed(2)}. You got R${net.toFixed(2)} in data.`);}
-  if(type==='bank'){if(balance<=2.5){alert('Need more than R2.50');return;}let send=balance-2.5;balance=0;localStorage.setItem('flip_balance',balance);updateUI();alert(`R${send.toFixed(2)} sent to your bank. Fee R2.50`);}
-  if(type==='cashout'){let amt=balance;balance=0;localStorage.setItem('flip_balance',balance);updateUI();alert(`Cash Out QR generated for R${amt.toFixed(2)}. Show at Shoprite till.`);}
-  updateUI();
-}
-function verifyTier1(){
-  let id=document.getElementById('id-input').value;
-  if(id.length!==13){alert('ID must be 13 digits');return;}
-  tier=1;localStorage.setItem('flip_tier',tier);updateUI();alert('Tier 1 Verified! Limit R3,000 unlocked. In live mode, partner verifies this.');showScreen('home');
-}
-function verifyTier2(){
-  tier=2;localStorage.setItem('flip_tier',tier);updateUI();alert('Tier 2 Started! In live mode, partner will ask for selfie + proof of address. Demo: upgraded.');showScreen('home');
-}
-function toggleCard(){alert('Card Frozen / Unfrozen — Demo');}
+const STORE={balance:'flip_balance',tier:'flip_demo_tier',count:'flip_count',activity:'flip_activity',cardFrozen:'flip_card_frozen'};
+let balance=Number(localStorage.getItem(STORE.balance)||0);
+let tier=Number(localStorage.getItem(STORE.tier)||0);
+let selectedBank='FNB',selectedVoucherType='eVoucher';
+const money=v=>Number(v||0).toFixed(2);
+function saveState(){localStorage.setItem(STORE.balance,String(balance));localStorage.setItem(STORE.tier,String(tier));}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));const el=document.getElementById('screen-'+id);if(el)el.classList.add('active');updateUI();window.scrollTo(0,0);}
+function getActivity(){try{return JSON.parse(localStorage.getItem(STORE.activity)||'[]');}catch(e){return [];}}
+function addActivity(entry){const a=getActivity();a.unshift({...entry,at:new Date().toISOString()});localStorage.setItem(STORE.activity,JSON.stringify(a.slice(0,30)));}
+function renderActivity(){const el=document.getElementById('activity');if(!el)return;const a=getActivity();if(!a.length){el.innerHTML='<p class="empty">No demo activity yet. Load a test voucher to explore.</p>';return;}el.innerHTML=a.map(x=>{const label=String(x.label||'Demo transaction').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));return '<div class="activity-row"><span>'+label+'<small>DEMO • '+new Date(x.at).toLocaleString()+'</small></span><b>'+(x.amount>=0?'+':'−')+'R'+money(Math.abs(x.amount))+'</b></div>';}).join('');}
+function updateUI(){const b=document.getElementById('balance');if(b)b.textContent=money(balance);document.querySelectorAll('.bal-mirror').forEach(e=>e.textContent=money(balance));const badge=document.getElementById('fica-badge');if(badge)badge.textContent=tier===0?'DEMO • Not verified':'DEMO Tier '+tier+' • Not verified';const status=document.getElementById('fica-status');if(status)status.textContent=tier===0?'Not verified — demo only':'Demo Tier '+tier+' selected — not FICA verified';const limit=document.getElementById('tier-limit');if(limit)limit.textContent='Demo balance only • No real funds';const flips=document.getElementById('admin-your-flips');if(flips)flips.textContent=localStorage.getItem(STORE.count)||'0';const card=document.getElementById('card-num');if(card)card.textContent=localStorage.getItem(STORE.cardFrozen)==='true'?'CARD FROZEN • DEMO':'DEMO CARD • NO PAYMENTS';renderActivity();}
+function setTab(t){selectedVoucherType=t==='a'?'Airtime Voucher':'eVoucher';document.getElementById('tab-e').classList.toggle('active',t==='e');document.getElementById('tab-a').classList.toggle('active',t==='a');}
+function selectBank(btn){document.querySelectorAll('.bank-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selectedBank=btn.textContent.trim();}
+function flipNow(){const pin=document.getElementById('pin-input').value.trim(),ref=document.getElementById('ref-input').value.trim(),amt=Number(document.getElementById('amount-input').value);if(!/^\d{10}$/.test(pin)||!/^\d{10}$/.test(ref)){alert('For this demo, enter exactly 10 digits in both test fields. Do not use a real voucher PIN or reference.');return;}if(!Number.isFinite(amt)||amt<=0||amt>50000){alert('Enter a demo amount greater than R0 and no more than R50,000.');return;}balance+=amt;localStorage.setItem(STORE.count,String(Number(localStorage.getItem(STORE.count)||0)+1));addActivity({label:selectedVoucherType+' load ('+selectedBank+')',amount:amt});saveState();document.getElementById('pin-input').value='';document.getElementById('ref-input').value='';document.getElementById('amount-input').value='';showScreen('home');alert('DEMO SUCCESS: R'+money(amt)+' was added to the sample wallet on this device. No voucher was checked and no money was received.');}
+function flipTo(type){if(balance<=0){alert('Load a test voucher first to explore the demo.');showScreen('load');return;}if(type==='data'){const phone=prompt('Enter a 10-digit test mobile number. Do not use a real number:');if(phone===null)return;if(!/^\d{10}$/.test(phone)){alert('Enter a 10-digit test number.');return;}const fee=balance*.02,net=balance-fee;addActivity({label:'Simulated data purchase • '+phone,amount:-balance});balance=0;saveState();updateUI();alert('DEMO PREVIEW: R'+money(net)+' data value, less R'+money(fee)+' sample fee. No data was purchased or sent.');}else if(type==='bank'){const bank=prompt('Destination bank (demo only):','FNB');if(bank===null||!bank.trim())return;const account=prompt('Enter a test account number. Do not use a real account:');if(account===null)return;if(!/^\d{6,16}$/.test(account)){alert('Enter a 6–16 digit test account number.');return;}if(balance<=2.5){alert('The sample balance must be more than R2.50.');return;}const send=balance-2.5;addActivity({label:'Simulated bank payout • '+bank.trim(),amount:-balance});balance=0;saveState();updateUI();alert('DEMO PREVIEW: R'+money(send)+' payout to '+bank.trim()+' (test account ending '+account.slice(-4)+'). R2.50 sample fee. No bank transfer was made.');}else if(type==='cashout'){const amt=balance,ref='FLIP-DEMO-'+Math.floor(100000+Math.random()*900000);addActivity({label:'Simulated cash-out • '+ref,amount:-amt});balance=0;saveState();updateUI();alert('DEMO PREVIEW: Cash-out reference '+ref+' for R'+money(amt)+'. This is not a valid Shoprite QR or cash voucher. No cash was paid.');}}
+function verifyTier1(){const id=document.getElementById('id-input').value.trim();if(!/^\d{13}$/.test(id)){alert('Enter 13 digits to test this screen. Use test digits only — never enter your real SA ID.');return;}tier=1;localStorage.setItem(STORE.tier,String(tier));document.getElementById('id-input').value='';updateUI();alert('DEMO ONLY: Tier 1 screen flow completed. No identity check took place and no FICA status or wallet limit was granted.');}
+function verifyTier2(){tier=2;localStorage.setItem(STORE.tier,String(tier));updateUI();alert('DEMO ONLY: Tier 2 journey preview opened. No selfie, address, identity or FICA verification took place.');}
+function toggleCard(){const frozen=localStorage.getItem(STORE.cardFrozen)==='true';localStorage.setItem(STORE.cardFrozen,String(!frozen));updateUI();alert(!frozen?'Demo card frozen on this device. No real card exists.':'Demo card unfrozen on this device. No real card exists.');}
+function resetDemo(){if(!confirm('Clear this device’s demo balance, activity and demo verification state?'))return;Object.values(STORE).forEach(k=>localStorage.removeItem(k));balance=0;tier=0;updateUI();showScreen('home');}
 updateUI();
