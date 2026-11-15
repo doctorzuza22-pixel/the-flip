@@ -24,6 +24,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Fetch the exact original DUMA logo
+        run: |
+          mkdir -p app/src/main/res/drawable-nodpi
+          curl -fL https://raw.githubusercontent.com/doctorzuza22-pixel/DUMA-Browser/main/app/src/main/res/drawable-nodpi/duma_logo.jpg -o app/src/main/res/drawable-nodpi/duma_logo.jpg
       - name: Build debug APK
         uses: gradle/gradle-build-action@v3
         with:
