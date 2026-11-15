@@ -5,14 +5,18 @@ android {
     compileSdk 34
 
     defaultConfig {
-        applicationId 'com.theflip.app'
+        applicationId 'com.duma.pay'
         minSdk 24
         targetSdk 34
-        versionCode 2
-        versionName '1.1.0'
+        versionCode 1
+        versionName '1.0.0'
     }
 
     buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-demo'
+        }
         release {
             minifyEnabled false
         }
