@@ -16,6 +16,10 @@ jobs:
         run: |
           mkdir -p app/src/main/assets
           cp index.html style.css app.js app/src/main/assets/
+      - name: Add original DUMA launcher artwork
+        run: |
+          mkdir -p app/src/main/res/drawable-nodpi
+          curl -fL https://raw.githubusercontent.com/doctorzuza22-pixel/DUMA-Browser/main/app/src/main/res/drawable-nodpi/duma_logo.jpg -o app/src/main/res/drawable-nodpi/duma_logo.jpg
       - name: Build debug APK
         run: gradle assembleDebug
       - uses: actions/upload-artifact@v4
