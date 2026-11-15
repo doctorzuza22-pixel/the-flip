@@ -3,8 +3,8 @@
     <application
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
-        android:icon="@drawable/duma_logo"
-        android:roundIcon="@drawable/duma_logo"
+        android:icon="@drawable/duma_pay_icon"
+        android:roundIcon="@drawable/duma_pay_icon"
         android:label="DUMA Pay"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
