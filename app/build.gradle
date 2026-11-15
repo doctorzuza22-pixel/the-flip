@@ -13,10 +13,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            applicationIdSuffix '.debug'
-            versionNameSuffix '-demo'
-        }
         release {
             minifyEnabled false
         }
