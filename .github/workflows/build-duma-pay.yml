@@ -30,10 +30,8 @@ jobs:
           sudo apt-get install -y imagemagick
           mkdir -p app/src/main/res/drawable-nodpi
           curl -fL https://raw.githubusercontent.com/doctorzuza22-pixel/DUMA-Browser/main/app/src/main/res/drawable-nodpi/duma_logo.jpg -o /tmp/duma_logo_original.jpg
-          # Preserve the original DUMA artwork and add PAY alongside it.
-          convert -size 900x360 xc:none \\( /tmp/duma_logo_original.jpg -resize 340x340 \\) -gravity west -geometry +20+0 -composite -font DejaVu-Sans-Bold -pointsize 126 -fill "#12345a" -gravity west -annotate +405+38 "PAY" app/src/main/assets/duma_pay_brand.png xc:none \( /tmp/duma_logo_original.jpg -resize 340x340 \) -gravity west -geometry +20+0 -composite -font DejaVu-Sans-Bold -pointsize 126 -fill '#12345a' -gravity west -annotate +405+38 'PAY' app/src/main/assets/duma_pay_brand.png
-          # Square launcher composition: original DUMA artwork plus PAY on its right.
-          convert -size 512x512 xc:white \\( /tmp/duma_logo_original.jpg -resize 320x320 \\) -gravity west -geometry +8+0 -composite -font DejaVu-Sans-Bold -pointsize 72 -fill "#12345a" -gravity east -annotate +12+0 "PAY" app/src/main/res/drawable-nodpi/duma_pay_icon.png xc:white \( /tmp/duma_logo_original.jpg -resize 320x320 \) -gravity west -geometry +8+0 -composite -font DejaVu-Sans-Bold -pointsize 72 -fill '#12345a' -gravity east -annotate +12+0 'PAY' app/src/main/res/drawable-nodpi/duma_pay_icon.png
+          convert -size 900x360 xc:none /tmp/duma_logo_original.jpg -resize 340x340 -gravity west -geometry +20+0 -composite -font DejaVu-Sans-Bold -pointsize 126 -fill '#12345a' -gravity west -annotate +405+38 'PAY' app/src/main/assets/duma_pay_brand.png
+          convert -size 512x512 xc:white /tmp/duma_logo_original.jpg -resize 320x320 -gravity west -geometry +8+0 -composite -font DejaVu-Sans-Bold -pointsize 72 -fill '#12345a' -gravity east -annotate +12+0 'PAY' app/src/main/res/drawable-nodpi/duma_pay_icon.png
       - name: Build debug APK
         uses: gradle/gradle-build-action@v3
         with:
