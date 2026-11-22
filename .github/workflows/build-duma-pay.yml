@@ -2,7 +2,7 @@ name: Build DUMA Pay APK
 
 on:
   push:
-    branches: [duma-pay-v1]
+    branches: [duma-pay-v1, duma-pay-sa-phase1]
     paths:
       - 'app/**'
       - 'build.gradle'
