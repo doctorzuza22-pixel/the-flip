@@ -79,6 +79,19 @@ These are product references, not endorsements, partnerships or claims that DUMA
 - Financial education and cash-flow insights
 - Responsible credit referrals only through registered credit providers and affordability checks
 
+### F. DUMA Invest
+- Mobile-first access to listed shares and investment products for customers across South Africa
+- Company discovery, education and watchlists
+- Brokerage order entry and execution through an authorised investment partner
+- Share custody and investor records through the approved custody model
+- Portfolio values, transaction history, dividends and corporate-action notifications
+- Clear brokerage, platform, market and FX fees before an order is confirmed
+- Fractional-share access only if the brokerage, exchange rules and custody provider support it
+- Risk education and suitability/appropriateness checks as required by the product and law
+- No guaranteed returns, misleading performance claims or unlicensed personalised investment advice
+
+DUMA Invest should be positioned as an accessible investment front end, not as a stock exchange or broker unless DUMA obtains the necessary permissions. Live investing requires an appropriately authorised financial-services provider/broker, custody and settlement arrangements, verified investor onboarding, market-data rights, disclosures, complaint handling and regulatory review. The current app contains only a local watchlist and non-binding investment-interest drafts; it does not quote live prices or place trades.
+
 ### F. DUMA Trust and Protection
 - Secure login, device binding and risk-based authentication
 - Transaction notifications and customer-set limits
