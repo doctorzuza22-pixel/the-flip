@@ -79,6 +79,36 @@ These are product references, not endorsements, partnerships or claims that DUMA
 - Financial education and cash-flow insights
 - Responsible credit referrals only through registered credit providers and affordability checks
 
+### H. DUMA Education Fund
+- Goal-based planning for school fees, uniforms, stationery, transport and education expenses
+- Target dates, family contributions, reminders and progress statements
+- Future optional payment links to participating schools and authorised savings/payment partners
+- No custody or automatic debits in the current prototype
+
+### I. DUMA POS
+- Merchant checkout, item/quantity/price entry, sales history and receipts
+- Future integration with approved QR, card and account-to-account payment providers
+- Merchant settlement reporting, refunds, reversals and reconciliation
+- Device security, offline queue controls and duplicate-payment prevention before live rollout
+
+### J. DUMA Community Projects
+- Community project profiles, budgets, milestones, organisers and progress updates
+- Transparent reporting and proof-of-spend records
+- Future fundraising only through verified organisers and approved collection/payment arrangements
+- Consent, privacy, fraud reporting and independent reconciliation safeguards
+
+### K. DUMA Financial Health
+- Household cash-flow snapshots, budgeting and debt repayment planning
+- Financial education and referrals to appropriate registered advisers or debt counsellors
+- No credit scoring, loan approval, debt counselling or financial advice claims in the prototype
+
+### L. DUMA Agent Network
+- Agent interest applications and business profile capture
+- Future approved agent onboarding, training, service-point directory and operating hours
+- Partner-authorised cash-in/cash-out, assisted payments and customer receipts
+- Agent due diligence, KYC/AML, limits, cash/electronic float controls, monitoring, reconciliation, complaints and audit trails are prerequisites
+- No agent is authorised and no cash-in/cash-out transaction is available in the current prototype
+
 ### G. DUMA Stockvel
 - Digital group setup for savings clubs, grocery stockvels, rotating payout circles, burial/mutual-support groups and business savings clubs
 - Member directory, agreed rules, contribution targets and payment schedules
