@@ -79,6 +79,17 @@ These are product references, not endorsements, partnerships or claims that DUMA
 - Financial education and cash-flow insights
 - Responsible credit referrals only through registered credit providers and affordability checks
 
+### G. DUMA Stockvel
+- Digital group setup for savings clubs, grocery stockvels, rotating payout circles, burial/mutual-support groups and business savings clubs
+- Member directory, agreed rules, contribution targets and payment schedules
+- Contribution ledger with references and reconciliation against verified bank/provider statements
+- Transparent payout calendar, approval workflow and member notifications
+- Group statements, meeting minutes, member permissions and dispute records
+- Future bank/partner-linked group accounts with suitable mandates, signatories and withdrawal controls
+- Optional merchant redemption for grocery stockvels through contracted merchants
+
+DUMA Stockvel should begin as a record-keeping and planning tool. The current prototype stores group details, members, contribution entries and payout plans locally; it does not hold, pool, invest or transfer group money and a user-entered contribution is not proof of payment. Any live custody, pooling, investment, payment collection or payout service requires legal review, suitable authorised partners, clear ownership and mandate arrangements, safeguarding, reconciliation, fraud controls, member consent and dispute procedures. A rotating payout group must have transparent rules and must not be presented as guaranteed investment returns.
+
 ### F. DUMA Invest
 - Mobile-first access to listed shares and investment products for customers across South Africa
 - Company discovery, education and watchlists
